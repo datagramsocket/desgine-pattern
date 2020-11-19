@@ -7,37 +7,22 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
+    private Tank tank = new Tank();
 
     public TankFrame(){
         this.setBounds(0, 0, 500, 500);
         this.setVisible(true);
+        this.setTitle("Tank");
         this.addWindowListener(new MyWindowAdapter());
         this.addKeyListener(new MyKeyListener());
     }
 
-    private int x;
-    private int y;
-    private Dir dir = Dir.DOWN;
-    private int speed = 10;
+
 
 
     @Override
     public void paint(Graphics g) {
-        g.fillRect(x, y,50,50);
-        switch(dir){
-            case UP:
-                y -= speed;
-                break;
-            case DOWN:
-                y += speed;
-                break;
-            case LEFT:
-                x -= speed;
-                break;
-            case RIGHT:
-                x += speed;
-                break;
-        }
+        tank.paint(g);
     }
 
 
@@ -102,11 +87,15 @@ public class TankFrame extends Frame {
         }
 
         public void setTankDir(){
-            if(bl) dir = Dir.LEFT;
-            if(br) dir = Dir.RIGHT;
-            if(bu) dir = Dir.UP;
-            if(bd) dir = Dir.DOWN;
-
+            if(!bl && !br && !bu && !bd){
+                tank.setMoving(false);
+            }else{
+                if(bl) tank.setDir(Dir.LEFT);
+                if(br) tank.setDir(Dir.RIGHT);
+                if(bu) tank.setDir(Dir.UP);
+                if(bd) tank.setDir(Dir.DOWN);
+                tank.setMoving(true);
+            }
         }
     }
 }
