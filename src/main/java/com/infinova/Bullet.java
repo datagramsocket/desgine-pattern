@@ -18,8 +18,12 @@ public class Bullet {
     private TankFrame tankFrame;
     private boolean alive = true;
 
+    public boolean isAlive() {
+        return alive;
+    }
+
+
     public void paint(Graphics g){
-        System.out.println("Bullet thread id:" + Thread.currentThread().getId());
         Color color = g.getColor();
         g.setColor(Color.red);
         g.fillOval(x, y, 10, 10);
@@ -44,9 +48,5 @@ public class Bullet {
         }
 
         if(x<0 || y<0 || x>TankFrame.GAME_WIDTH || y>TankFrame.GAME_HEIGHT) alive=false;
-
-        if(!alive){
-            tankFrame.bulletList.remove(this);
-        }
     }
 }

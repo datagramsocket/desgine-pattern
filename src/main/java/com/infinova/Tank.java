@@ -32,7 +32,7 @@ public class Tank {
     }
 
     public void paint(Graphics g){
-        System.out.println("Tank thread id:" + Thread.currentThread().getId());
+
         Color color = g.getColor();
         g.setColor(Color.yellow);
         g.fillRect(x, y,50,50);

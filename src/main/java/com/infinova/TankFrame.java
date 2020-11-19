@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TankFrame extends Frame {
     private Tank tank = new Tank(this);
@@ -27,10 +28,15 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("TankFrame thread id:" + Thread.currentThread().getId());
+        System.out.println("size:" + bulletList.size());
         tank.paint(g);
-        for(int i=0; i<bulletList.size(); i++){
-            bulletList.get(i).paint(g);
+        Iterator<Bullet> iterator = bulletList.iterator();
+        while(iterator.hasNext()){
+            Bullet bullet = iterator.next();
+            if(!bullet.isAlive()){
+                iterator.remove();
+            }
+            bullet.paint(g);
         }
     }
 
