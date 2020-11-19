@@ -5,16 +5,21 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class TankFrame extends Frame {
-    private Tank tank = new Tank();
+    private Tank tank = new Tank(this);
+    public ArrayList<Bullet> bulletList = new ArrayList();
+    public static final int GAME_WIDTH = 500;
+    public static  final int GAME_HEIGHT = 500;
 
     public TankFrame(){
-        this.setBounds(0, 0, 500, 500);
+        this.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT);
         this.setVisible(true);
         this.setTitle("Tank");
         this.addWindowListener(new MyWindowAdapter());
         this.addKeyListener(new MyKeyListener());
+
     }
 
 
@@ -22,9 +27,28 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        System.out.println("TankFrame thread id:" + Thread.currentThread().getId());
         tank.paint(g);
+        for(int i=0; i<bulletList.size(); i++){
+            bulletList.get(i).paint(g);
+        }
     }
 
+    Image offScreenImage = null;
+    @Override
+    public void update(Graphics g) {
+        if(offScreenImage == null){
+            offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics graphics = offScreenImage.getGraphics();
+        Color color = graphics.getColor();
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(0,0, GAME_WIDTH, GAME_HEIGHT);
+        graphics.setColor(color);
+        paint(graphics);
+        g.drawImage(offScreenImage, 0, 0, null);
+
+    }
 
 
     public class MyWindowAdapter extends WindowAdapter{
@@ -58,6 +82,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_RIGHT:
                     br = true;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    tank.fire();
                     break;
                 default:
                     break;
