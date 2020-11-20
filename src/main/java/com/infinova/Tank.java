@@ -73,6 +73,6 @@ public class Tank {
     }
 
     public void fire(){
-        tankFrame.bulletList.add(new Bullet(x, y, dir, tankFrame));
+        tankFrame.bulletList.add(new Bullet(x + ResourceManager.tankD.getWidth()/2, y + + ResourceManager.tankD.getHeight()/2, dir, tankFrame));
     }
 }

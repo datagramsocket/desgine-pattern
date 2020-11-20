@@ -11,6 +11,7 @@ import java.util.Iterator;
 public class TankFrame extends Frame {
     private Tank tank = new Tank(this);
     public ArrayList<Bullet> bulletList = new ArrayList();
+    public ArrayList<Tank> enemies = new ArrayList<Tank>();
     public static final int GAME_WIDTH = 500;
     public static  final int GAME_HEIGHT = 500;
 
@@ -35,6 +36,8 @@ public class TankFrame extends Frame {
             }
             bullet.paint(g);
         }
+
+
     }
 
     Image offScreenImage = null;

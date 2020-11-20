@@ -14,7 +14,7 @@ public class Bullet {
     private int x;
     private int y;
     private Dir dir;
-    private int speed = 1;
+    private int speed = 20;
     private TankFrame tankFrame;
     private boolean alive = true;
 

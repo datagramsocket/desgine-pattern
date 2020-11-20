@@ -8,5 +8,6 @@ public class Main {
             Thread.sleep(50);
             tankFrame.repaint();
         }
+
     }
 }
