@@ -23,9 +23,6 @@ public class TankFrame extends Frame {
 
     }
 
-
-
-
     @Override
     public void paint(Graphics g) {
         System.out.println("size:" + bulletList.size());
@@ -41,6 +38,9 @@ public class TankFrame extends Frame {
     }
 
     Image offScreenImage = null;
+    /**
+     * 防止闪烁代码
+     * */
     @Override
     public void update(Graphics g) {
         if(offScreenImage == null){
