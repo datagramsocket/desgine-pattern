@@ -24,10 +24,20 @@ public class Bullet {
 
 
     public void paint(Graphics g){
-        Color color = g.getColor();
-        g.setColor(Color.red);
-        g.fillOval(x, y, 10, 10);
-        g.setColor(color);
+        switch (dir){
+            case UP:
+                g.drawImage(ResourceManager.bulletU, x, y, null);
+                break;
+            case LEFT:
+                g.drawImage(ResourceManager.bulletL, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceManager.bulletD, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceManager.bulletR, x, y, null);
+                break;
+        }
         move();
     }
 
@@ -46,7 +56,6 @@ public class Bullet {
                 x += speed;
                 break;
         }
-
         if(x<0 || y<0 || x>TankFrame.GAME_WIDTH || y>TankFrame.GAME_HEIGHT) alive=false;
     }
 }

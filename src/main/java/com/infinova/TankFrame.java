@@ -26,7 +26,6 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("size:" + bulletList.size());
         tank.paint(g);
         Iterator<Bullet> iterator = bulletList.iterator();
         while(iterator.hasNext()){
